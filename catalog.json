@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "name": "PS5 Widget Store",
+  "version": "0.1.0",
+  "description": "Community catalog of custom Welcome Hub widgets.",
+  "widgets": [
+    {
+      "id": "store-smoke",
+      "title": "Store Smoke Test",
+      "description": "A harmless tile that confirms the test package loads.",
+      "category": "Tools",
+      "version": "0.1.0",
+      "downloads": 0,
+      "packageUrl": "https://raw.githubusercontent.com/manchildtechnologies-ui/ps5-widget-store/main/store-smoke-0.1.0.zip",
+      "sha256": "e7be39da5acf6362cd407c69debdc9229da80556d0c865ab72de7c33c4ccacf0",
+      "glyph": "\u2713"
+    }
+  ]
+}
