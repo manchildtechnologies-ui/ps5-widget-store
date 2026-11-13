@@ -1,32 +1,33 @@
 {
   "schemaVersion": 1,
   "name": "PS5 Widget Store",
-  "version": "0.2.0",
-  "description": "Community catalog of custom Welcome Hub widgets.",
+  "version": "0.3.0",
+  "description": "Community catalog of custom PS5 Welcome Hub widgets.",
   "widgets": [
     {
       "id": "store-smoke",
       "title": "Store Smoke Test",
-      "description": "A harmless tile that confirms the first package loads.",
+      "description": "A harmless tile that confirms a widget installed directly from the GitHub repository.",
       "category": "Tools",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "downloads": 0,
-      "packageUrl": "https://raw.githubusercontent.com/manchildtechnologies-ui/ps5-widget-store/main/store-smoke-0.1.0.zip",
-      "sha256": "e7be39da5acf6362cd407c69debdc9229da80556d0c865ab72de7c33c4ccacf0",
+      "files": ["widgets/store-smoke/config.json", "widgets/store-smoke/widget.js"],
+      "screenshots": [],
       "icon": "store-smoke-icon.png",
       "glyph": "✓"
     },
     {
       "id": "store-smoke-two",
       "title": "Store Smoke Test 2",
-      "description": "Second harmless listing to test the multi-widget catalog and icon preview.",
+      "description": "A second harmless package to confirm the catalog can install more than one remote widget.",
       "category": "Tools",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "downloads": 0,
-      "packageUrl": "https://raw.githubusercontent.com/manchildtechnologies-ui/ps5-widget-store/main/store-smoke-two-0.1.0.zip",
-      "sha256": "ac6592afffe911deee3a8c34c29b86d86b9a06b8bdb973a12f896c3ac039b4fd",
+      "files": ["widgets/store-smoke-two/config.json", "widgets/store-smoke-two/widget.js"],
+      "screenshots": [],
       "icon": "store-smoke-two-icon.png",
       "glyph": "Ⅱ"
     }
   ]
 }
+
