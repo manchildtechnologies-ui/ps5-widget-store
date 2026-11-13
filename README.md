@@ -47,3 +47,6 @@ Screenshots are previews only and do not need to be included in the widget's `fi
 
 The `files` list is fetched from GitHub and installed into `/data/wh-widgets/<id>/`. The bridge validates the directory name against `config.json` before committing the installation. Submit widgets only when their authors permit redistribution and the package has been reviewed.
 
+## Landing page
+
+The catalog preview site is published with GitHub Pages at [Widget Store](https://manchildtechnologies-ui.github.io/ps5-widget-store/). To enable the first deployment, open **Settings → Pages** for this repository and set **Build and deployment → Source** to **GitHub Actions**. After that, updates to `main` publish automatically. Each listing supports a direct detail link using `?widget=<catalog-id>`.
