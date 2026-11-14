@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "name": "PS5 Widget Store",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "Community catalog of Welcome Hub widgets.",
   "widgets": [
     {
