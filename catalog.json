@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "name": "PS5 Widget Store",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Community catalog of Welcome Hub widgets.",
   "widgets": [
     {
@@ -53,11 +53,10 @@
       "title": "Blockris",
       "description": "A falling-block puzzle controlled from the tile.",
       "category": "Games",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "downloads": 0,
       "files": [
         "widgets/blockris/config.json",
-        "widgets/blockris/icon.png",
         "widgets/blockris/widget.js"
       ],
       "screenshots": [],
