@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "name": "PS5 Widget Store",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Community catalog of Welcome Hub widgets.",
   "widgets": [
     {
@@ -193,7 +193,9 @@
         "widgets/google-news/glyph-color.png",
         "widgets/google-news/widget.js"
       ],
-      "screenshots": [],
+      "screenshots": [
+        "screenshots/google-news.png"
+      ],
       "icon": "widgets/google-news/glyph-color.png"
     },
     {
