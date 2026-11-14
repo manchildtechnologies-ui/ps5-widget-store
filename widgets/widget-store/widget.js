@@ -31,10 +31,21 @@
     var localPair = React.useState({}), local = localPair[0], setLocal = localPair[1];
     function save(key, value) { setLocal(function (old) { var n = {}; for (var k in old) if (Object.prototype.hasOwnProperty.call(old, k)) n[k] = old[k]; n[key] = value; return n; }); if (props.onSettingChange) props.onSettingChange(key, value); }
     function storeLog(message) { try { if (typeof wh.log === 'function') wh.log('widget store: ' + String(message).slice(0, 180)); } catch (e) {} }
+    function bytesToBase64(buffer) {
+      if (typeof Uint8Array === 'undefined') throw new Error('This runtime cannot read binary package files.');
+      var bytes = new Uint8Array(buffer), alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/', out = [];
+      for (var i = 0; i < bytes.length; i += 3) {
+        var a = bytes[i], hasB = i + 1 < bytes.length, hasC = i + 2 < bytes.length, b = hasB ? bytes[i + 1] : 0, c = hasC ? bytes[i + 2] : 0;
+        out.push(alphabet.charAt(a >> 2) + alphabet.charAt(((a & 3) << 4) | (b >> 4)) + (hasB ? alphabet.charAt(((b & 15) << 2) | (c >> 6)) : '=') + (hasC ? alphabet.charAt(c & 63) : '='));
+      }
+      return out.join('');
+    }
     function binaryResponseBody(response) {
-      if (response && typeof response.blob === 'function') return response.blob();
-      if (response && typeof response.arrayBuffer === 'function') return response.arrayBuffer();
-      throw new Error('This runtime cannot read binary package files.');
+      var read;
+      if (response && typeof response.arrayBuffer === 'function') read = response.arrayBuffer();
+      else if (response && typeof response.blob === 'function') read = response.blob().then(function (blob) { if (!blob || typeof blob.arrayBuffer !== 'function') throw new Error('This runtime cannot convert binary package files.'); return blob.arrayBuffer(); });
+      else throw new Error('This runtime cannot read binary package files.');
+      return Promise.resolve(read).then(bytesToBase64);
     }
     var repoValue = Object.prototype.hasOwnProperty.call(local, 'repos') ? local.repos : saved.repos, repos = [];
     if (typeof repoValue === 'string') { try { var p = JSON.parse(repoValue); if (Array.isArray(p)) repos = p.filter(function (u) { return typeof u === 'string' && /^https:\/\/raw\.githubusercontent\.com\//.test(u); }); } catch (e) {} }
@@ -128,7 +139,8 @@
       Promise.all(files.map(function (path, index) {
         var url = /^https:\/\//i.test(path) ? path : base + String(path).replace(/^\//, '');
         if (!/^https:\/\/raw\.githubusercontent\.com\//i.test(url)) throw new Error('Package files must come from raw.githubusercontent.com.');
-        return fetch(url).then(function (r) { if (!r || !r.ok) throw new Error('Could not fetch ' + names[index] + ' (' + (r && r.status || '?') + ').'); return names[index] === 'config.json' || names[index] === 'widget.js' || /\.(json|js|md|txt)$/i.test(names[index]) ? r.text() : binaryResponseBody(r); }).then(function (body) { return { name: names[index], body: body }; });
+        var isText = names[index] === 'config.json' || names[index] === 'widget.js' || /\.(json|js|md|txt)$/i.test(names[index]);
+        return fetch(url).then(function (r) { if (!r || !r.ok) throw new Error('Could not fetch ' + names[index] + ' (' + (r && r.status || '?') + ').'); return isText ? r.text() : binaryResponseBody(r); }).then(function (body) { return { name: names[index], body: body, base64: !isText }; });
       })).then(function (payloads) {
         storeLog('downloads complete ' + selected.id);
         payloads.sort(function (a, b) { return a.name === 'config.json' ? -1 : (b.name === 'config.json' ? 1 : (a.name === 'widget.js' ? -1 : (b.name === 'widget.js' ? 1 : 0))); });
@@ -139,7 +151,7 @@
         var endpoint = 'http://127.0.0.1:8098/__install/file?i=' + encodeURIComponent(selected.id);
         var sentCount = 0;
         return payloads.reduce(function (chain, file) {
-          return chain.then(function () { return fetch(endpoint + '&f=' + encodeURIComponent(file.name), { method: 'POST', headers: { 'Content-Type': 'application/octet-stream' }, body: file.body }).then(function (r) { if (!r || !r.ok) { storeLog('bridge rejected ' + file.name + ' status=' + (r && r.status || '?')); throw new Error('Bridge rejected ' + file.name + '.'); } return r.json(); }).then(function (result) { if (!result || !result.ok) { storeLog('bridge rejected ' + file.name + ': ' + (result && result.error || 'unknown')); throw new Error(result && result.error || ('Bridge rejected ' + file.name + '.')); } storeLog('staged ' + file.name); sentCount++; setProgress(35 + Math.round(55 * sentCount / payloads.length)); }); });
+          return chain.then(function () { var target = file.base64 ? 'http://127.0.0.1:8098/__install/base64?i=' + encodeURIComponent(selected.id) : endpoint; return fetch(target + '&f=' + encodeURIComponent(file.name), { method: 'POST', headers: { 'Content-Type': file.base64 ? 'text/plain' : 'application/octet-stream' }, body: file.body }).then(function (r) { return r.text().then(function (text) { var result = {}; try { result = JSON.parse(text); } catch (e) {} if (!r || !r.ok) { storeLog('bridge rejected ' + file.name + ' status=' + (r && r.status || '?') + ' ' + String(result.error || '').slice(0, 80)); throw new Error(result.error || ('Bridge rejected ' + file.name + '.')); } return result; }); }).then(function (result) { if (!result || !result.ok) { storeLog('bridge rejected ' + file.name + ': ' + (result && result.error || 'unknown')); throw new Error(result && result.error || ('Bridge rejected ' + file.name + '.')); } storeLog('staged ' + file.name); sentCount++; setProgress(35 + Math.round(55 * sentCount / payloads.length)); }); });
         }, Promise.resolve()).then(function () { return fetch('http://127.0.0.1:8098/__install/commit?i=' + encodeURIComponent(selected.id), { method: 'POST' }).then(function (r) { if (!r || !r.ok) throw new Error('Bridge could not finalize the widget folder.'); return r.json(); }); });
       }).then(function (result) { if (!result || !result.ok) throw new Error(result && result.error || 'Install did not finish.'); storeLog('install committed ' + selected.id); markInstalled(selected.id, selected.version); setProgress(100); setStatus(selected.title + ' ' + (hasUpdate(selected) ? 'updated' : 'installed') + ' in /data/wh-widgets/' + selected.id + '. The hub will refresh shortly.'); }).catch(function (e) { var message = String(e && e.message || e); storeLog('install failed ' + selected.id + ': ' + message); setStatus('Install failed: ' + message); }).then(function () { setInstalling(false); });
       return true;
