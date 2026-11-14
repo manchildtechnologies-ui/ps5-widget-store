@@ -1,0 +1,32 @@
+{
+  "id": "weather",
+  "title": "Weather",
+  "description": "Current conditions",
+  "glyph": "glyph.png",
+  "iconFallback": "date_time",
+  "size": 2,
+  "settings": [
+    {
+      "id": "zip",
+      "title": "Selected ZIP",
+      "type": "text",
+      "default": ""
+    },
+    {
+      "id": "zipList",
+      "title": "Saved ZIP codes",
+      "type": "text",
+      "default": ""
+    },
+    {
+      "id": "addZip",
+      "title": "Add ZIP code",
+      "type": "action"
+    },
+    {
+      "id": "deleteZip",
+      "title": "Remove Current ZIP",
+      "type": "action"
+    }
+  ]
+}

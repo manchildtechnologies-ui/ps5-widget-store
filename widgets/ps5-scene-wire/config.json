@@ -1,0 +1,10 @@
+{
+  "id": "ps5-scene-wire",
+  "title": "PS5 News",
+  "description": "Read the latest PS5 scene stories and app releases",
+  "glyph": "glyph.png",
+  "iconFallback": "news",
+  "size": 3,
+  "storiesUrl": "https://ps5-scene-wire.vercel.app/data/stories.json",
+  "releasesUrl": "https://ps5-scene-wire.vercel.app/api/releases"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "widget.manager",
+  "title": "Widget Manager",
+  "description": "Uninstall installed widgets. Focus a row and press X, then confirm.",
+  "glyph": "glyph.png",
+  "iconFallback": "grid",
+  "size": 6
+}

@@ -1,33 +1,136 @@
 {
   "schemaVersion": 1,
   "name": "PS5 Widget Store",
-  "version": "0.3.0",
-  "description": "Community catalog of custom PS5 Welcome Hub widgets.",
+  "version": "1.0.0",
+  "description": "Community catalog of Welcome Hub widgets.",
   "widgets": [
     {
-      "id": "store-smoke",
-      "title": "Store Smoke Test",
-      "description": "A harmless tile that confirms a widget installed directly from the GitHub repository.",
+      "id": "widget-store",
+      "title": "Widget Store",
+      "description": "Browse and install Welcome Hub widgets from GitHub; manage catalog sources in Options.",
       "category": "Tools",
-      "version": "0.2.0",
+      "version": "1.0.0",
       "downloads": 0,
-      "files": ["widgets/store-smoke/config.json", "widgets/store-smoke/widget.js"],
+      "files": [
+        "widgets/widget-store/config.json",
+        "widgets/widget-store/glyph.png",
+        "widgets/widget-store/widget.js"
+      ],
       "screenshots": [],
-      "icon": "store-smoke-icon.png",
-      "glyph": "✓"
+      "icon": "widgets/widget-store/glyph.png"
     },
     {
-      "id": "store-smoke-two",
-      "title": "Store Smoke Test 2",
-      "description": "A second harmless package to confirm the catalog can install more than one remote widget.",
-      "category": "Tools",
-      "version": "0.2.0",
+      "id": "dev-test",
+      "title": "Dev Test",
+      "description": "Experimental system URI launcher. Some actions are unstable or developer-only; use with care.",
+      "category": "Developer",
+      "version": "1.0.0",
       "downloads": 0,
-      "files": ["widgets/store-smoke-two/config.json", "widgets/store-smoke-two/widget.js"],
+      "files": [
+        "widgets/dev-test/config.json",
+        "widgets/dev-test/widget.js"
+      ],
       "screenshots": [],
-      "icon": "store-smoke-two-icon.png",
-      "glyph": "Ⅱ"
+      "glyph": "DEV"
+    },
+    {
+      "id": "calculator",
+      "title": "Calculator",
+      "description": "A four-function calculator controlled with the D-pad.",
+      "category": "Tools",
+      "version": "1.0.0",
+      "downloads": 0,
+      "files": [
+        "widgets/calculator/config.json",
+        "widgets/calculator/icon.png",
+        "widgets/calculator/widget.js"
+      ],
+      "screenshots": [],
+      "icon": "widgets/calculator/icon.png"
+    },
+    {
+      "id": "blockris",
+      "title": "Blockris",
+      "description": "A falling-block puzzle controlled from the tile.",
+      "category": "Games",
+      "version": "1.0.0",
+      "downloads": 0,
+      "files": [
+        "widgets/blockris/config.json",
+        "widgets/blockris/icon.png",
+        "widgets/blockris/widget.js"
+      ],
+      "screenshots": [],
+      "icon": "widgets/blockris/icon.png"
+    },
+    {
+      "id": "ps5-scene-wire",
+      "title": "PS5 News",
+      "description": "Read PS5 scene stories and release notes.",
+      "category": "News",
+      "version": "1.0.0",
+      "downloads": 0,
+      "files": [
+        "widgets/ps5-scene-wire/config.json",
+        "widgets/ps5-scene-wire/glyph.png",
+        "widgets/ps5-scene-wire/widget.js"
+      ],
+      "screenshots": [],
+      "icon": "widgets/ps5-scene-wire/glyph.png"
+    },
+    {
+      "id": "snake",
+      "title": "Snake",
+      "description": "Classic Snake with on-tile direction controls.",
+      "category": "Games",
+      "version": "1.0.0",
+      "downloads": 0,
+      "files": [
+        "widgets/snake/config.json",
+        "widgets/snake/icon.png",
+        "widgets/snake/widget.js"
+      ],
+      "screenshots": [],
+      "icon": "widgets/snake/icon.png"
+    },
+    {
+      "id": "widget.manager",
+      "title": "Widget Manager",
+      "description": "Manage installed Welcome Hub widgets and refresh the Hub.",
+      "category": "Tools",
+      "version": "1.0.0",
+      "downloads": 0,
+      "files": [
+        "widgets/widget.manager/config.json",
+        "widgets/widget.manager/glyph.png",
+        "widgets/widget.manager/toast.png",
+        "widgets/widget.manager/widget.js"
+      ],
+      "screenshots": [],
+      "icon": "widgets/widget.manager/glyph.png"
+    },
+    {
+      "id": "weather",
+      "title": "Weather",
+      "description": "Live local weather. Add your ZIP code in Options to get started.",
+      "category": "Weather",
+      "version": "1.0.0",
+      "downloads": 0,
+      "files": [
+        "widgets/weather/config.json",
+        "widgets/weather/glyph.png",
+        "widgets/weather/weather-clear-day.jpg",
+        "widgets/weather/weather-clear-night-icon.png",
+        "widgets/weather/weather-clear-night.jpg",
+        "widgets/weather/weather-cloudy.jpg",
+        "widgets/weather/weather-fog.jpg",
+        "widgets/weather/weather-rain.jpg",
+        "widgets/weather/weather-snow.jpg",
+        "widgets/weather/weather-storm.jpg",
+        "widgets/weather/widget.js"
+      ],
+      "screenshots": [],
+      "icon": "widgets/weather/glyph.png"
     }
   ]
 }
-

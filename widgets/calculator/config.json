@@ -1,0 +1,10 @@
+{
+  "id": "calculator",
+  "title": "Calculator",
+  "description": "A simple four-function calculator controlled with the D-pad.",
+  "iconId": "wh:calculator",
+  "size": 2,
+  "glyph": "icon.png",
+  "iconFallback": "grid",
+  "glyphColor": true
+}

@@ -1,7 +1,0 @@
-{
-  "id": "store-smoke",
-  "title": "Store Smoke Test",
-  "description": "Checks that a GitHub catalog entry and widget package are reachable.",
-  "iconId": "app_welcome",
-  "size": 1
-}

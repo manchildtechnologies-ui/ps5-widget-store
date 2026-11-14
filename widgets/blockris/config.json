@@ -1,0 +1,10 @@
+{
+  "id": "blockris",
+  "title": "Blockris",
+  "description": "A small falling-block puzzle for Welcome Hub. Focus the controls and press X.",
+  "iconId": "wh:blockris",
+  "size": 6,
+  "glyph": "icon.png",
+  "iconFallback": "grid",
+  "glyphColor": true
+}

@@ -1,0 +1,16 @@
+{
+  "id": "widget-store",
+  "title": "Widget Store",
+  "description": "Browse Welcome Hub widgets from GitHub",
+  "glyph": "glyph.png",
+  "iconFallback": "app_welcome",
+  "size": 3,
+  "catalogUrl": "https://raw.githubusercontent.com/manchildtechnologies-ui/ps5-widget-store/main/catalog.json",
+  "settings": [
+    {
+      "id": "manageSources",
+      "title": "Manage Sources",
+      "type": "action"
+    }
+  ]
+}

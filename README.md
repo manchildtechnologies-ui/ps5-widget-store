@@ -1,25 +1,28 @@
 # PS5 Widget Store
 
-A GitHub-hosted catalog for custom PS5 Welcome Hub widgets. The Widget Store tile reads `catalog.json` and downloads individual files from the same repository. ZIP files are not required.
+A GitHub-hosted catalog for custom PS5 Welcome Hub widgets. The Widget Store tile reads `catalog.json` and downloads individual files from this repository. Packages use ordinary files; ZIP archives are not required.
 
 ## Repository layout
 
-Keep each widget's install files in a folder named after its catalog ID:
-
 ```text
 catalog.json
-store-smoke-icon.png
 screenshots/<widget-id>-1.png
 widgets/<widget-id>/config.json
 widgets/<widget-id>/widget.js
-widgets/<widget-id>/icon.png        # optional
+widgets/<widget-id>/<required assets>
 ```
 
-Each catalog entry contains a `files` array of repository-relative paths. Include `config.json` and `widget.js`; list any additional files the widget needs. Install files are placed directly in `/data/wh-widgets/<id>/`, so filenames must be unique within that widget folder. Current bridge limits are 16 files, 2 MB per file, and 8 MB total per widget.
+Each catalog entry lists every required install file in its `files` array. Files are installed directly into `/data/wh-widgets/<id>/`, so filenames must be unique within each widget folder. The current bridge accepts up to 16 files, 2 MB per file, and 8 MB total per widget.
+
+## Included widgets
+
+- Widget Store, Calculator, Blockris, PS5 News, Snake, Widget Manager, and Weather.
+- Dev Test is an experimental system-URI launcher. Some entries are unstable or developer-only.
+- Weather starts without a built-in ZIP; enter a ZIP code in the tile's Options menu.
 
 ## Screenshots
 
-Developers can upload PNG, JPG, JPEG, or WebP previews anywhere in the repository, then list the paths in `screenshots`. The Store shows up to eight images in the widget details screen. Paths are relative to the repository root; a label can be supplied with an object:
+Upload PNG, JPG, JPEG, or WebP previews and list their repository-relative paths in `screenshots`. The Store shows up to eight images in a widget's details screen. Screenshots are previews only and do not belong in the package's `files` list.
 
 ```json
 "screenshots": [
@@ -27,8 +30,6 @@ Developers can upload PNG, JPG, JPEG, or WebP previews anywhere in the repositor
   { "url": "screenshots/my-widget-2.jpg", "label": "Settings screen" }
 ]
 ```
-
-Screenshots are previews only and do not need to be included in the widget's `files` list.
 
 ## Catalog entry
 
@@ -40,13 +41,13 @@ Screenshots are previews only and do not need to be included in the widget's `fi
   "category": "Tools",
   "version": "1.0.0",
   "files": ["widgets/my-widget/config.json", "widgets/my-widget/widget.js"],
-  "screenshots": ["screenshots/my-widget-1.png"],
-  "icon": "my-widget-icon.png"
+  "screenshots": [],
+  "icon": "widgets/my-widget/icon.png"
 }
 ```
 
-The `files` list is fetched from GitHub and installed into `/data/wh-widgets/<id>/`. The bridge validates the directory name against `config.json` before committing the installation. Submit widgets only when their authors permit redistribution and the package has been reviewed.
+Only publish packages whose authors permit redistribution. Review each package before adding it to the catalog.
 
 ## Landing page
 
-The catalog preview site is published with GitHub Pages at [Widget Store](https://manchildtechnologies-ui.github.io/ps5-widget-store/). To enable the first deployment, open **Settings → Pages** for this repository and set **Build and deployment → Source** to **GitHub Actions**. After that, updates to `main` publish automatically. Each listing supports a direct detail link using `?widget=<catalog-id>`.
+The catalog preview site is published with GitHub Pages at [Widget Store](https://manchildtechnologies-ui.github.io/ps5-widget-store/). The repository uses GitHub Actions for Pages deployment. Each listing supports a direct detail link using `?widget=<catalog-id>`.
