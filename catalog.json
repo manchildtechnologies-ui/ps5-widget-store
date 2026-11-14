@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "name": "PS5 Widget Store",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Community catalog of Welcome Hub widgets.",
   "widgets": [
     {
@@ -18,20 +18,6 @@
       ],
       "screenshots": [],
       "icon": "widgets/widget-store/glyph.png"
-    },
-    {
-      "id": "dev-test",
-      "title": "Dev Test",
-      "description": "Experimental system URI launcher. Some actions are unstable or developer-only; use with care.",
-      "category": "Developer",
-      "version": "1.0.0",
-      "downloads": 0,
-      "files": [
-        "widgets/dev-test/config.json",
-        "widgets/dev-test/widget.js"
-      ],
-      "screenshots": [],
-      "glyph": "DEV"
     },
     {
       "id": "calculator",
