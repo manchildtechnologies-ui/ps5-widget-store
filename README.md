@@ -17,7 +17,7 @@ Each catalog entry lists every required install file in its `files` array. Files
 ## Included widgets
 
 - Widget Store, Calculator, Blockris, PS5 News, Snake, Widget Manager, and Weather.
-- Also included: Checkers, FLAP!, Memory Match, Pac-Man, Google News, PS5 Reddit, and TMZ.
+- Also included: Checkers, FLAP!, Memory Match, Mac-Pan, Google News, PS5 Reddit, and TMZ.
 
 - Weather starts without a built-in ZIP; enter a ZIP code in the tile's Options menu.
 

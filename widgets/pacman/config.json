@@ -1,6 +1,6 @@
 {
   "id": "pacman",
-  "title": "Pac-Man",
+  "title": "Mac-Pan",
   "description": "A classic maze-chase game. Choose a direction and press X to turn.",
   "glyph": "glyph.png",
   "glyphColor": true,
