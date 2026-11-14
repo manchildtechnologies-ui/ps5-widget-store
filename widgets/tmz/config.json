@@ -1,0 +1,10 @@
+{
+  "id": "tmz",
+  "title": "TMZ",
+  "description": "Latest TMZ headlines with article photos",
+  "glyph": "glyph.png",
+  "glyphColor": true,
+  "iconFallback": "news",
+  "size": 3,
+  "feedUrl": "https://www.tmz.com/rss.xml"
+}

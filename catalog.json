@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "name": "PS5 Widget Store",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Community catalog of Welcome Hub widgets.",
   "widgets": [
     {
@@ -131,6 +131,111 @@
       ],
       "screenshots": [],
       "icon": "widgets/weather/glyph.png"
+    },
+    {
+      "id": "checkers",
+      "title": "Checkers",
+      "description": "American checkers against the console. D-pad moves, X selects and moves.",
+      "category": "Games",
+      "version": "1.0.0",
+      "downloads": 0,
+      "files": [
+        "widgets/checkers/config.json",
+        "widgets/checkers/glyph.png",
+        "widgets/checkers/widget.js"
+      ],
+      "screenshots": [],
+      "icon": "widgets/checkers/glyph.png"
+    },
+    {
+      "id": "flappy-bird",
+      "title": "FLAP!",
+      "description": "Arcade flying game. Focus the tile and press X on FLAP to rise through the pipes.",
+      "category": "Games",
+      "version": "1.0.0",
+      "downloads": 0,
+      "files": [
+        "widgets/flappy-bird/config.json",
+        "widgets/flappy-bird/icon.png",
+        "widgets/flappy-bird/pipe.png",
+        "widgets/flappy-bird/widget.js"
+      ],
+      "screenshots": [],
+      "icon": "widgets/flappy-bird/icon.png"
+    },
+    {
+      "id": "memory",
+      "title": "Memory Match",
+      "description": "Flip pairs and match all sixteen cards. D-pad moves, X flips.",
+      "category": "Games",
+      "version": "1.0.0",
+      "downloads": 0,
+      "files": [
+        "widgets/memory/config.json",
+        "widgets/memory/glyph.png",
+        "widgets/memory/widget.js"
+      ],
+      "screenshots": [],
+      "icon": "widgets/memory/glyph.png"
+    },
+    {
+      "id": "pacman",
+      "title": "Pac-Man",
+      "description": "A classic maze-chase game. Choose a direction and press X to turn.",
+      "category": "Games",
+      "version": "1.0.0",
+      "downloads": 0,
+      "files": [
+        "widgets/pacman/config.json",
+        "widgets/pacman/glyph.png",
+        "widgets/pacman/widget.js"
+      ],
+      "screenshots": [],
+      "icon": "widgets/pacman/glyph.png"
+    },
+    {
+      "id": "google-news",
+      "title": "Google News",
+      "description": "Top Google News US headlines with L1/R1 stepping and browser open.",
+      "category": "News",
+      "version": "1.0.0",
+      "downloads": 0,
+      "files": [
+        "widgets/google-news/config.json",
+        "widgets/google-news/glyph-color.png",
+        "widgets/google-news/widget.js"
+      ],
+      "screenshots": [],
+      "icon": "widgets/google-news/glyph-color.png"
+    },
+    {
+      "id": "vintendo.reddit-ps5",
+      "title": "PS5 Reddit",
+      "description": "New posts from r/ps5homebrew and r/PS5_Jailbreak in one tile.",
+      "category": "News",
+      "version": "1.0.0",
+      "downloads": 0,
+      "files": [
+        "widgets/vintendo.reddit-ps5/config.json",
+        "widgets/vintendo.reddit-ps5/widget.js"
+      ],
+      "screenshots": [],
+      "glyph": "NEWS"
+    },
+    {
+      "id": "tmz",
+      "title": "TMZ",
+      "description": "Latest TMZ headlines with article photos.",
+      "category": "Entertainment",
+      "version": "1.0.0",
+      "downloads": 0,
+      "files": [
+        "widgets/tmz/config.json",
+        "widgets/tmz/glyph.png",
+        "widgets/tmz/widget.js"
+      ],
+      "screenshots": [],
+      "icon": "widgets/tmz/glyph.png"
     }
   ]
 }

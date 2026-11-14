@@ -1,0 +1,10 @@
+{
+  "id": "flappy-bird",
+  "title": "FLAP!",
+  "description": "Arcade flying game. Focus the tile and press X on FLAP to rise through the pipes.",
+  "iconId": "wh:flappy-bird",
+  "size": 6,
+  "glyph": "icon.png",
+  "iconFallback": "grid",
+  "glyphColor": true
+}

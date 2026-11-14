@@ -17,6 +17,7 @@ Each catalog entry lists every required install file in its `files` array. Files
 ## Included widgets
 
 - Widget Store, Calculator, Blockris, PS5 News, Snake, Widget Manager, and Weather.
+- Also included: Checkers, FLAP!, Memory Match, Pac-Man, Google News, PS5 Reddit, and TMZ.
 - Dev Test is an experimental system-URI launcher. Some entries are unstable or developer-only.
 - Weather starts without a built-in ZIP; enter a ZIP code in the tile's Options menu.
 

@@ -1,0 +1,8 @@
+{
+  "id": "checkers",
+  "title": "Checkers",
+  "description": "American checkers against the console. D-pad moves, X selects and moves.",
+  "glyph": "glyph.png",
+  "iconFallback": "grid",
+  "size": 6
+}
