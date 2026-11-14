@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "name": "PS5 Widget Store",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Community catalog of Welcome Hub widgets.",
   "widgets": [
     {
@@ -9,7 +9,7 @@
       "title": "Widget Store",
       "description": "Browse and install Welcome Hub widgets from GitHub; manage catalog sources in Options.",
       "category": "Tools",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "downloads": 0,
       "files": [
         "widgets/widget-store/config.json",

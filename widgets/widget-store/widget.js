@@ -84,6 +84,19 @@
     function cancelRepoEntry() { setEditorOpen(false); setManagerOpen(true); setRepoError(''); }
     wh.onPressed(wh.Button.Triangle, function () { if (editorOpen) { cancelRepoEntry(); return true; } if (managerOpen) { setManagerOpen(false); return true; } if (page === 'details' && selected) { openPackageBrowser(); return true; } return false; });
     wh.onPressed(wh.Button.R2, function () { if (page === 'details' && selected) { installSelected(); return true; } return false; });
+    wh.onPressed(wh.Button.L1, function () {
+      if (editorOpen) { cancelRepoEntry(); return true; }
+      if (managerOpen) { setManagerOpen(false); return true; }
+      if (page === 'details' && selected) {
+        if (installing) return true;
+        setPage('list'); setStatus(''); setProgress(0); return true;
+      }
+      return step(-1);
+    });
+    wh.onPressed(wh.Button.R1, function () {
+      if (managerOpen || editorOpen || page !== 'list') return false;
+      return step(1);
+    });
     function openRepoEntry() { setDraft(''); setRepoError(''); setManagerOpen(false); setEditorOpen(true); }
     function openRepoManager() { setManagerOpen(true); }
     if (wh.onSettingAction) wh.onSettingAction('manageSources', openRepoManager);
@@ -131,7 +144,7 @@
     else if (data.error) main = ce(View, { style: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: 18 } }, Txt('CATALOG OFFLINE', 21, C.gold), Txt(data.error, 18, C.muted, { marginTop: 10 }), Txt('Press □ to retry', 15, C.cyan, { marginTop: 10 }));
     else if (!selected) main = ce(View, { style: { flex: 1, alignItems: 'center', justifyContent: 'center' } }, Txt(activeRepo ? 'NO WIDGETS IN THIS CATALOG' : 'NO SOURCE SELECTED', 21, C.cyan), Txt('Open Settings to manage GitHub sources.', 18, C.muted, { marginTop: 8 }));
     else if (page === 'list') {
-      var windowSize = 5, start = Math.max(0, Math.min(selectedIndex - 2, items.length - windowSize));
+      var windowSize = 4, start = Math.max(0, Math.min(selectedIndex - 2, items.length - windowSize));
       var rows = items.slice(start, start + windowSize).map(function (item, offset) {
         var idx = start + offset, active = idx === selectedIndex, uri = iconUri(item, activeRepo);
         return ce(View, { key: item.id, style: { minHeight: 65, padding: 8, marginBottom: 6, borderRadius: 11, backgroundColor: active ? '#173345' : C.panel2, borderWidth: active ? 2 : 1, borderColor: active ? C.cyan : C.line, flexDirection: 'row', alignItems: 'center' } },
