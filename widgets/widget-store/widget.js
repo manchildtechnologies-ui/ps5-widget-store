@@ -31,21 +31,22 @@
     var localPair = React.useState({}), local = localPair[0], setLocal = localPair[1];
     function save(key, value) { setLocal(function (old) { var n = {}; for (var k in old) if (Object.prototype.hasOwnProperty.call(old, k)) n[k] = old[k]; n[key] = value; return n; }); if (props.onSettingChange) props.onSettingChange(key, value); }
     function storeLog(message) { try { if (typeof wh.log === 'function') wh.log('widget store: ' + String(message).slice(0, 180)); } catch (e) {} }
-    function bytesToBase64(buffer) {
-      if (typeof Uint8Array === 'undefined') throw new Error('This runtime cannot read binary package files.');
-      var bytes = new Uint8Array(buffer), alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/', out = [];
-      for (var i = 0; i < bytes.length; i += 3) {
-        var a = bytes[i], hasB = i + 1 < bytes.length, hasC = i + 2 < bytes.length, b = hasB ? bytes[i + 1] : 0, c = hasC ? bytes[i + 2] : 0;
-        out.push(alphabet.charAt(a >> 2) + alphabet.charAt(((a & 3) << 4) | (b >> 4)) + (hasB ? alphabet.charAt(((b & 15) << 2) | (c >> 6)) : '=') + (hasC ? alphabet.charAt(c & 63) : '='));
-      }
-      return out.join('');
+    function githubContentsUrl(rawUrl) {
+      var m = String(rawUrl || '').match(/^https:\/\/raw\.githubusercontent\.com\/([^/]+)\/([^/]+)\/([^/]+)\/(.+)$/i);
+      if (!m) throw new Error('Binary package files must be hosted in a GitHub repository.');
+      var path = m[4].split('/').map(encodeURIComponent).join('/');
+      return 'https://api.github.com/repos/' + m[1] + '/' + m[2] + '/contents/' + path + '?ref=' + encodeURIComponent(m[3]);
     }
-    function binaryResponseBody(response) {
-      var read;
-      if (response && typeof response.arrayBuffer === 'function') read = response.arrayBuffer();
-      else if (response && typeof response.blob === 'function') read = response.blob().then(function (blob) { if (!blob || typeof blob.arrayBuffer !== 'function') throw new Error('This runtime cannot convert binary package files.'); return blob.arrayBuffer(); });
-      else throw new Error('This runtime cannot read binary package files.');
-      return Promise.resolve(read).then(bytesToBase64);
+    function binaryResponseBase64(rawUrl) {
+      return fetch(githubContentsUrl(rawUrl), { headers: { Accept: 'application/vnd.github+json' } }).then(function (r) {
+        if (!r || !r.ok) throw new Error('GitHub binary API returned ' + (r && r.status || '?') + '.');
+        return r.json();
+      }).then(function (asset) {
+        if (!asset || asset.encoding !== 'base64' || typeof asset.content !== 'string') throw new Error('GitHub did not return base64 content for this asset.');
+        var encoded = asset.content.replace(/\s/g, '');
+        if (!encoded || encoded.length % 4 || !/^[A-Za-z0-9+/]+={0,2}$/.test(encoded)) throw new Error('GitHub returned invalid base64 content.');
+        return encoded;
+      });
     }
     var repoValue = Object.prototype.hasOwnProperty.call(local, 'repos') ? local.repos : saved.repos, repos = [];
     if (typeof repoValue === 'string') { try { var p = JSON.parse(repoValue); if (Array.isArray(p)) repos = p.filter(function (u) { return typeof u === 'string' && /^https:\/\/raw\.githubusercontent\.com\//.test(u); }); } catch (e) {} }
@@ -140,7 +141,8 @@
         var url = /^https:\/\//i.test(path) ? path : base + String(path).replace(/^\//, '');
         if (!/^https:\/\/raw\.githubusercontent\.com\//i.test(url)) throw new Error('Package files must come from raw.githubusercontent.com.');
         var isText = names[index] === 'config.json' || names[index] === 'widget.js' || /\.(json|js|md|txt)$/i.test(names[index]);
-        return fetch(url).then(function (r) { if (!r || !r.ok) throw new Error('Could not fetch ' + names[index] + ' (' + (r && r.status || '?') + ').'); return isText ? r.text() : binaryResponseBody(r); }).then(function (body) { return { name: names[index], body: body, base64: !isText }; });
+        if (!isText) return binaryResponseBase64(url).then(function (body) { return { name: names[index], body: body, base64: true }; });
+        return fetch(url).then(function (r) { if (!r || !r.ok) throw new Error('Could not fetch ' + names[index] + ' (' + (r && r.status || '?') + ').'); return r.text(); }).then(function (body) { return { name: names[index], body: body, base64: false }; });
       })).then(function (payloads) {
         storeLog('downloads complete ' + selected.id);
         payloads.sort(function (a, b) { return a.name === 'config.json' ? -1 : (b.name === 'config.json' ? 1 : (a.name === 'widget.js' ? -1 : (b.name === 'widget.js' ? 1 : 0))); });
