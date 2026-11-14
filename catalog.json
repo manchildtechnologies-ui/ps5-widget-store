@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "name": "PS5 Widget Store",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Community catalog of Welcome Hub widgets.",
   "widgets": [
     {
@@ -16,7 +16,9 @@
         "widgets/widget-store/glyph.png",
         "widgets/widget-store/widget.js"
       ],
-      "screenshots": [],
+      "screenshots": [
+        "screenshots/widget-store.png"
+      ],
       "icon": "widgets/widget-store/glyph.png"
     },
     {
@@ -31,7 +33,9 @@
         "widgets/calculator/icon.png",
         "widgets/calculator/widget.js"
       ],
-      "screenshots": [],
+      "screenshots": [
+        "screenshots/calculator.png"
+      ],
       "icon": "widgets/calculator/icon.png"
     },
     {
@@ -61,7 +65,9 @@
         "widgets/ps5-scene-wire/glyph.png",
         "widgets/ps5-scene-wire/widget.js"
       ],
-      "screenshots": [],
+      "screenshots": [
+        "screenshots/ps5-news.png"
+      ],
       "icon": "widgets/ps5-scene-wire/glyph.png"
     },
     {
@@ -76,7 +82,9 @@
         "widgets/snake/icon.png",
         "widgets/snake/widget.js"
       ],
-      "screenshots": [],
+      "screenshots": [
+        "screenshots/snake.png"
+      ],
       "icon": "widgets/snake/icon.png"
     },
     {
@@ -99,7 +107,9 @@
         "widgets/weather/weather-storm.jpg",
         "widgets/weather/widget.js"
       ],
-      "screenshots": [],
+      "screenshots": [
+        "screenshots/weather.png"
+      ],
       "icon": "widgets/weather/glyph.png"
     },
     {
@@ -114,7 +124,9 @@
         "widgets/checkers/glyph.png",
         "widgets/checkers/widget.js"
       ],
-      "screenshots": [],
+      "screenshots": [
+        "screenshots/checkers.png"
+      ],
       "icon": "widgets/checkers/glyph.png"
     },
     {
@@ -130,7 +142,9 @@
         "widgets/flappy-bird/pipe.png",
         "widgets/flappy-bird/widget.js"
       ],
-      "screenshots": [],
+      "screenshots": [
+        "screenshots/flap.png"
+      ],
       "icon": "widgets/flappy-bird/icon.png"
     },
     {
@@ -145,7 +159,9 @@
         "widgets/memory/glyph.png",
         "widgets/memory/widget.js"
       ],
-      "screenshots": [],
+      "screenshots": [
+        "screenshots/memory-match.png"
+      ],
       "icon": "widgets/memory/glyph.png"
     },
     {
@@ -160,7 +176,9 @@
         "widgets/pacman/glyph.png",
         "widgets/pacman/widget.js"
       ],
-      "screenshots": [],
+      "screenshots": [
+        "screenshots/mac-pan.png"
+      ],
       "icon": "widgets/pacman/glyph.png"
     },
     {
@@ -204,7 +222,9 @@
         "widgets/tmz/glyph.png",
         "widgets/tmz/widget.js"
       ],
-      "screenshots": [],
+      "screenshots": [
+        "screenshots/tmz.png"
+      ],
       "icon": "widgets/tmz/glyph.png"
     }
   ]
